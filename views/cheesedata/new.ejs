@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Cheese</title>
+  </head>
+  <body>
+    <h1>Add a New Cheese</h1>
+    <form action="/cheese" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+
+        <label for="coo">COO:</label>
+        <input type="text" name="coo" id="coo" />
+
+        <label for="milkType">Milk:</label>
+        <input type="text" name="milk" id="milk" />
+
+        <label for="flavorProfile">Flavor Profile:</label>
+        <input type="text" name="flavorProfile" id="flavorProfile" />
+
+        <label for="intensity">Intensity (Scale of 0-5)</label>
+        <input type="number" name="intensity" id="intensity" />
+
+        <label for="isReadyToEat">Ready to Eat?</label>
+        <input type="checkbox" name="isReadyToEat" id="isReadyToEat" />
+
+    <button type="submit">Add Cheese</button>
+    </form>
+    <a href="/cheese">Back to Cheese Index</a>
+  </body>
+</html>
