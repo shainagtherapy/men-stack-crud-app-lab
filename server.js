@@ -26,7 +26,8 @@ app.get('/', async (req, res) => {
 app.get("/cheese", async (req, res) => {
     const allCheese = await Cheese.find();
     console.log(allCheese)
-    res.send("welcome to the cheese index")
+    //res.send("welcome to the cheese index")
+    res.render("cheesedata/index.ejs", { cheese: allCheese })
 })
 
 
