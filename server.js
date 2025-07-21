@@ -22,13 +22,24 @@ app.get('/', async (req, res) => {
     res.render('index.ejs')
 })
 
+// GET - index route / READ
+app.get("/cheese", async (req, res) => {
+    const allCheese = await Cheese.find();
+    console.log(allCheese)
+    res.send("welcome to the cheese index")
+})
+
+
 // GET / READ, step to prep for CREATE:
 app.get('/cheese/new', async (req, res) => {
     res.render('cheesedata/new.ejs');
 })
 
 // POST / CREATE:
-
+app.post("/cheese", async (req, res) => {
+    await Cheese.create(req.body);
+    res.redirect("/cheese/new")
+})
 
 
 
