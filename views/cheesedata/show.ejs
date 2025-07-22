@@ -7,9 +7,10 @@
   </head>
   <body>
     <h1><%= cheese.name %></h1>
-    <p>
-    Flavor intensity <%= cheese.intensity %>/5
-    </p>
+    <p>Country of Origin: <%= cheese.coo %></p>
+    <p>Milk: <%= cheese.milkType %></p>
+    <p>Flavor profile: <%= cheese.flavorProfile %></p>
+    <p>Flavor intensity <%= cheese.intensity %>/5</p>
     <form action ="/cheese/<%= cheese._id %>?_method=DELETE" method="POST">
         <button type=""submit">Delete <%= cheese.name %></button>
     </form>
