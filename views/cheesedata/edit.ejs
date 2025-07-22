@@ -1,0 +1,23 @@
+<body>
+  <!-- update the header -->
+  <h1>Edit <%= cheese.name %></h1>
+  <form action="/cheese/<%=cheese._id%>?_method=PUT" method="POST">
+     <label for="name">Name:</label>
+        <input type="text" name="name" value="<%= cheese.name %>" />
+
+    <label for="coo">COO:</label>
+        <input type="text" name="coo" value="<%= cheese.coo %>" />
+
+    <label for="milkType">Milk:</label>
+        <input type="text" name="milkType" value="<%= cheese.milkType %>"/>
+
+    <label for="flavorProfile">Flavor Profile:</label>
+        <input type="text" name="flavorProfile" value="<%= cheese.flavorProfile %>" />
+
+    <label for="intensity">Intensity (Scale of 0-5)</label>
+        <input type="number" name="intensity" value="<%= cheese.intensity %>" />
+    
+    <button type="submit">Update Cheese</button>
+  </form>
+  <a href="/fruits">Back to Cheese Catalog</a>
+</body>

@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
+const methodOverride = require("method-override");
+const morgan = require("morgan");
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI);
@@ -14,8 +16,8 @@ const Cheese = require('./models/cheese.js');
 
 // middleware:
 app.use(express.urlencoded({ extended: false }));
-//app.use(methodOverride("_method"));
-//pp.use(morgan("dev"));
+app.use(methodOverride("_method"));
+app.use(morgan("dev"));
 
 // Landing page/ servers title message:
 app.get('/', async (req, res) => {
@@ -31,20 +33,42 @@ app.get("/cheese", async (req, res) => {
 })
 
 
-// GET / READ, step to prep for CREATE:
+// new = GET / READ, step to prep for CREATE:
 app.get('/cheese/new', async (req, res) => {
     res.render('cheesedata/new.ejs');
 })
 
+// show Id = GET / READ
+app.get('/cheese/:cheeseId', async (req,res) => {
+     const foundCheese = await Cheese.findById(req.params.cheeseId);
+     res.render("cheesedata/show.ejs", { cheese : foundCheese})
+ })
+
 // POST / CREATE:
 app.post("/cheese", async (req, res) => {
     await Cheese.create(req.body);
-    res.redirect("/cheese/new")
+    res.redirect("/cheese")
 })
 
+// DELETE METHOD = DELETE CRUD OPERATION
+app.delete("/cheese/:cheeseId", async (req, res) => {
+    await Cheese.findByIdAndDelete(req.params.cheeseId);
+    res.redirect("/cheese")
+})
 
+// GET / READ (for edit)
+app.get("/cheese/:cheeseId/edit", async (req, res) => {
+    const foundCheese = await Cheese.findById(req.params.cheeseId);
+    res.render("cheesedata/edit.ejs", {
+        cheese: foundCheese,
+    })
+})
 
-
+// PUT / UPDATE (for updating, follow-up to the edit step^)
+app.put("/cheese/:cheeseId", async (req, res) => {
+    await Cheese.findByIdAndUpdate(req.params.cheeseId, req.body);
+    res.redirect(`/cheese/${req.params.cheeseId}`)
+})
 
 
 app.listen(3000, () => {

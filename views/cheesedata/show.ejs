@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= cheese.name %></title>
+  </head>
+  <body>
+    <h1><%= cheese.name %></h1>
+    <p>
+    Flavor intensity <%= cheese.intensity %>/5
+    </p>
+    <form action ="/cheese/<%= cheese._id %>?_method=DELETE" method="POST">
+        <button type=""submit">Delete <%= cheese.name %></button>
+    </form>
+    <a href="/cheese/<%= cheese._id %>/edit">Edit <%= cheese.name %></a> 
+    <a href="/cheese">Back to Cheese Index</a>
+  </body>
+</html>
